@@ -4,6 +4,7 @@ const mongoose = require('mongoose') // 載入 mongoose
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser') //引用 body-parser
 const methodOverride = require('method-override') // 載入 method-override
+const session = require('express-session') //載入express-session
 
 const routes = require('./routes')// 引用路由器
 require('./config/mongoose')
@@ -19,8 +20,13 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // 設定每一筆請求都會透過 methodOverride 進行前置處理
 app.use(methodOverride('_method'))
 
-
 app.use(routes)// 將 request 導入路由器
+
+app.use(session({
+  secret: 'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true
+}))
 
 app.listen(PORT, () => {
   console.log(`App is running on http://localhost:${PORT}`)
