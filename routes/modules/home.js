@@ -4,7 +4,9 @@ const router = express.Router()
 // 引用 Todo model
 const Todo = require('../../models/todo')
 // 定義首頁路由
+
 router.get('/', (req, res) => {
+  // res.send('Hello World!')
   Todo.find()
     .lean()
     .sort({ name: 'asc' }) // desc
