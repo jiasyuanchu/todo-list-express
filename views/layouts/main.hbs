@@ -6,15 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo List</title>
   <link href="https://bootswatch.com/5/united/bootstrap.min.css" rel="stylesheet">
-    {{!-- integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" --}}
+  {{!-- integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" --}}
 </head>
 
 <body class="bg-light">
   <header>
     <nav class="navbar navbar-dark justify-content-between" style="padding: 8px 16px;
     background-color: #2023e9;">
-      <a class="navbar-brand" href="/">Todo List</a>
-      <a class="btn btn-outline-light" href="/todos/new">Create</a>
+      <a class="navbar-brand" href="/">
+        {{#if isAuthenticated}}{{ user.name}}'s {{/if}}
+        Todo List
+      </a>
+      {{#if isAuthenticated}}
+      <a href="/users/logout" class="btn btn-outline-light">Logout</a>
+      {{else}}
+      <a href="/users/login" class="btn btn-outline-light">Login</a>
+      {{/if}}
+
     </nav>
   </header>
   <main>
