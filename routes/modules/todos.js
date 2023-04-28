@@ -5,6 +5,7 @@ const Todo = require('../../models/todo')
 router.get('/new', (req, res) => {
   return res.render('new')
 })
+
 router.post('/', (req, res) => {
   const userId = req.user._id
   const name = req.body.name
@@ -12,6 +13,7 @@ router.post('/', (req, res) => {
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
+
 router.get('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
@@ -38,7 +40,7 @@ router.put('/:id', (req, res) => {
       todo.isDone = isDone === 'on'
       return todo.save()
     })
-    .then(() => res.redirect(`/todos/${id}`))
+    .then(() => res.redirect(`/todos/${_id}`))
     .catch(error => console.log(error))
 })
 router.delete('/:id', (req, res) => {
